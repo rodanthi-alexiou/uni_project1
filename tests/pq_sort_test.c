@@ -29,8 +29,10 @@ void test_pq_sort_vector(void) {
 	for (int i = 0; i < N; i++)
 		vector_insert_last(vec, create_int(rand()));
 
+
 	// sort
 	pq_sort_vector(vec, compare_ints);
+   
 
 	// έλεγχος ότι οι τιμές είναι σε αύξουσα σειρά
 	int last = INT_MIN;
@@ -40,20 +42,37 @@ void test_pq_sort_vector(void) {
 		last = *current;
 	}
 
-	vector_destroy(vec);
+	vector_destroy(vec); 
 }
 
 void test_pq_sort_list(void) {
+		List list= list_create(NULL);
 
-	// προς υλοποίηση...
+	// προσθήκη τυχαίων αριθμών
+	int N = 10;
+	for (int i = 0; i < N; i++){
+		list_insert_next(list, list_last(list), create_int(rand()));
+	}
 
-}
+	pq_sort_list(list, compare_ints);
+
+	// έλεγχος ότι οι τιμές είναι σε αύξουσα σειρά
+	int last = INT_MIN;
+		for(ListNode node= list_first(list); node!= LIST_EOF; node=list_next(list,node)){
+			int* current = list_node_value(list,node);
+			TEST_CHECK(last <= *current);
+			last = *current;
+		}
+	
+	}
+
 
 
 // Λίστα με όλα τα tests προς εκτέλεση
 TEST_LIST = {
-	{ "test_pq_sort_vector", test_pq_sort_vector },
 	{ "test_pq_sort_list", test_pq_sort_list },
+	{ "test_pq_sort_vector", test_pq_sort_vector },
+	
 
-	{ NULL, NULL } // τερματίζουμε τη λίστα με NULL
+	{ NULL, NULL} // τερματίζουμε τη λίστα με NULL
 };
