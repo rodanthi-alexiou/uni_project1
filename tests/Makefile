@@ -1,7 +1,7 @@
 # paths
 LIB = ../lib
 INCLUDE = ../include
-MODULES = ../modules
+MODULES = ../modules/pq_sort
 
 # compiler
 CC = gcc
