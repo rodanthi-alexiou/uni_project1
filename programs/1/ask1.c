@@ -2,7 +2,7 @@
 #include <string.h>
 
 #define MAX 20
-#define LINES 1000000
+#define LINES 100
 
 int main(){
 
