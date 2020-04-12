@@ -15,7 +15,8 @@ OBJS = original.o
 # Το εκτελέσιμο πρόγραμμα
 EXEC = original
 
-# Παράμετροι για δοκιμαστική εκτέλεση
+# Ορίσματα για make run
+ARGS = < ../../misc/words/words-10
 
 
 $(EXEC): $(OBJS)
@@ -27,4 +28,4 @@ clean:
 	rm -f $(OBJS) $(EXEC)
 
 run: $(EXEC)
-	./$(EXEC) 
+	./$(EXEC) $(ARGS)
