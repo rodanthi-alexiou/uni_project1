@@ -39,6 +39,19 @@ void test_life_create_from_rle(){
 
 }
 
+void test_life_save_to_rle(){
+    char file[] = "bο$2bo$3o!";
+
+    LifeState state = life_create_from_rle(file);
+   life_save_to_rle(state,file);
+
+    
+    TEST_CHECK( 1 == 2);
+
+    set_destroy(state);
+
+}
+
 void test_life_get_cell(){
     char file[] = "bo$2bo$3o!";
 
@@ -90,6 +103,7 @@ TEST_CHECK( 1 == 1 );
 // Λίστα με όλα τα tests προς εκτέλεση
 TEST_LIST = {
 	{ "life_create_from_rle",test_life_create_from_rle },
+	{ "life_save_to_rle",test_life_save_to_rle },
     { "life_create",test_life_create },
     { "life_get_cell",test_life_get_cell },
     { "life_set_cell",test_life_set_cell },
