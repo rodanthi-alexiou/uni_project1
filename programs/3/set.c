@@ -20,7 +20,7 @@ int* create_int(int value) {
 int main(){
 
 Set lines = set_create(compare_strings, NULL);
-char array[MAX][100];
+char array[MAX];
 int i=0;
 char* value;
 
@@ -29,9 +29,10 @@ SetNode node;
 
 
 
-            while(fgets(array[i], MAX, stdin) != NULL){
-                set_insert(lines,&array[i]);
-				node = set_find_node(lines,&array[i]);
+            while(fgets(array, MAX, stdin) != NULL){
+				char* saved = strdup(array);
+                set_insert(lines,saved);
+				node = set_find_node(lines,saved);
 				
 				if(set_next(lines, node) == SET_EOF){
 					printf("<none>\n");
