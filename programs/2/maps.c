@@ -20,26 +20,27 @@ int* create_int(int value) {
 
 int main(){
 
-char array[MAX][100];
+char array[MAX];
 int i=0;
 
 Map lines = map_create(compare_strings, NULL, NULL);
 
 int* times;
 
-            while(fgets(array[i], MAX, stdin) != NULL){
+            while(fgets(array, MAX, stdin) != NULL){
+                char* saved= strdup(array);
 
 		//αν δεν υπάρχει η γραμμή που διαβάστηκε σαν key στο map
-                if(map_find(lines,&array[i]) == NULL){
+                if(map_find(lines,saved) == NULL){
                     times = create_int(0);		//δεν έχει ξαναδιαβαστεί άρα οι φορές είναι 0
-                    map_insert(lines, &array[i], times);
+                    map_insert(lines, saved, times);
                     printf("%d \n", *times );
                 }
 		    //αλλιώς η γραμμή που διαβάστηκε έχει ξαναδιαβαστεί άρα υπάρχει ως key στο map
                 else{
-                    times = map_find(lines, &array[i]);
+                    times = map_find(lines, saved);
                     (*times)+=1;
-                    map_insert(lines, &array[i], times);
+                    map_insert(lines, saved, times);
                     printf("%d \n", *times);
                 }
 
