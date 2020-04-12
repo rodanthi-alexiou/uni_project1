@@ -35,7 +35,7 @@ bool life_get_cell(LifeState state, LifeCell cell);
 void life_set_cell(LifeState state, LifeCell cell, bool value);
 
 // Παράγει μια νέα κατάσταση που προκύπτει από την εξέλιξη της κατάστασης state
-LifeState life_evolve(LifeState state);
+//LifeState life_evolve(LifeState state);
 
 // Καταστρέφει την κατάσταση ελευθερώντας οποιαδήποτε μνήμη έχει δεσμευτεί
 void life_destroy(LifeState state);
