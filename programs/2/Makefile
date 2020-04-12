@@ -11,12 +11,13 @@ CFLAGS = -Wall -Werror -g -I$(INCLUDE)
 LDFLAGS = -lm
 
 # Αρχεία .o
-OBJS = maps.o $(LIB)/k08.a
+OBJS = maps.o $(LIB)/k08.a 
 
 # Το εκτελέσιμο πρόγραμμα
 EXEC = maps
 
-
+# Ορίσματα για make run
+ARGS = < ../../misc/words/words-10
 
 $(EXEC): $(OBJS)
 	$(CC) $(OBJS) -o $(EXEC) $(LDFLAGS)
@@ -29,5 +30,5 @@ clean:
 	rm -f $(OBJS) $(EXEC)
 
 run: $(EXEC)
-	./$(EXEC) 
+	./$(EXEC) $(ARGS)
 
