@@ -19,7 +19,7 @@ int* create_int(int value) {
 
 int main(){
 FILE* fp;
-Set lines = set_create(compare_strings, NULL);
+Set lines = set_create(compare_strings, NULL);  //δημιουργώ ένα σετ
 char array[MAX][100];
 int i=0;
 char* value;
@@ -30,17 +30,19 @@ if(fp == NULL)
     return -1;
 
 SetNode node;
-
+//όσο δεν έχουμε διαβάσει όλο το αρχείο
 while (feof(fp) == 0){
 
             if(fgets(array[i], MAX, fp) != NULL){
-                set_insert(lines,&array[i]);
-				node = set_find_node(lines,&array[i]);
+                set_insert(lines,&array[i]);	//βάζω την γραμμή που μόλις διάβασα στο set
+				node = set_find_node(lines,&array[i]); //βρίσκω το node της
 				
+		    		//αν δεν υπάρχει επόμενος κόμβος σημαίνει ότι δεν υπάρχει κόμβος που να πληρεί τα κριτήρια
 				if(set_next(lines, node) == SET_BOF){
 					printf("<none>");
 				}
 				else{
+					//ο αμέσως επόμενος κόμβος θα είναι ο μικρότερος κόμβος από αυτούς που διαβάστηκαν που είναι μεγαλύτερος/ή ίσος από αυτόν που μόλις διαβάστηκε
 					value = set_node_value(lines,set_next(lines, node));
 					printf("%s", value);
 				}
