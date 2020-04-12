@@ -81,22 +81,64 @@ if(o_value == 0)
     ly++;
 }
 //for(SetNode node=set_first(state); node!= SET_EOF; node = set_next(state,node)){
- //     LifeCell* yes = set_node_value(state,node);
-//    printf("NEW x: %d and y: %d \n", yes->x, yes->y);
+  //    LifeCell* yes = set_node_value(state,node);
+ //   printf("NEW x: %d and y: %d \n", yes->x, yes->y);
 //}
  return state;
 }
 
 // Αποθηκεύει την κατάσταση state στο αρχείο file (RLE format)
 void life_save_to_rle(LifeState state, char* file){
-//SetNode node = set_last(state);
-//LifeCell* last = set_node_value(state,node);
-//int size = last->y;
+int y_value, x_value;
+int count;
 
-//        for(int i=0; i<size; i++){
+char* new=strdup("");
 
-  //      }
-        
+for(SetNode node=set_first(state); node!= SET_EOF; node = set_next(state,node)){
+      LifeCell* cell = set_node_value(state,node);
+      int y_next = 0;
+      int x_next = 0;
+      if(node != set_last(state)){
+      SetNode nextn= set_next(state,node);
+      LifeCell* next = set_node_value(state,nextn);
+      y_next=next->y;
+      x_next=next->x;
+      }
+      y_value=cell->y;
+      x_value = cell->x;
+      char* number=malloc(sizeof(char));
+      char* num=malloc(sizeof(char));
+    printf("%d %d\n", x_value, y_value);
+
+
+        if(x_value != (x_next-1)){
+           
+            if(x_value != 0){
+            int bb = x_value - count;
+            sprintf(num,"%d",bb);
+            strcat(new,"b");
+            }
+            
+            sprintf(number,"%d",count);
+           if(count>1){
+            strcat(new,number);}
+            strcat(new,"o");
+            count=1;
+            
+            
+       }
+       else{
+           count++;
+       }
+
+       if(y_next > y_value){
+            strcat(new,"$");
+            count=0;
+        }
+}
+
+printf("%s", new);
+                
 }
 
 // Επιστρέφει την τιμή του κελιού cell στην κατάσταση state (true: ζωντανό, false: νεκρό)
@@ -128,32 +170,7 @@ void life_set_cell(LifeState state, LifeCell cell, bool value){
 }
 
 // Παράγει μια νέα κατάσταση που προκύπτει από την εξέλιξη της κατάστασης state
-LifeState life_evolve(LifeState state){
 
-int alive=0;
-
-    LifeCell new;
-     
-        for(int y_value=ly-1; y_value<=ly+1; y_value++){
-           for(int x_value=lx-1; x_value<=lx+1; x_value++){
-               new.x=x_value;
-                new.y=y_value;
-                if(life_get_at(state,new) == true){
-                   alive++;
-                }
-                else{
-                    life_set_cell(state,new,true);
-                    life_evolve(state);
-                }
-            
-            }
-        }
-if(alive>2 || alive<3){
-    life_set_cell(state,new,false);
-}
-
-    return state;
-}
 
 // Καταστρέφει την κατάσταση ελευθερώντας οποιαδήποτε μνήμη έχει δεσμευτεί
 void life_destroy(LifeState state){
