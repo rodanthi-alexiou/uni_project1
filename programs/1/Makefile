@@ -10,10 +10,10 @@ CFLAGS = -Wall -Werror -g -I$(INCLUDE)
 LDFLAGS = -lm
 
 # Αρχεία .o
-OBJS = original.o  
+OBJS = ask1.o  
 
 # Το εκτελέσιμο πρόγραμμα
-EXEC = original
+EXEC = ask1
 
 # Ορίσματα για make run
 ARGS = < ../../misc/words/words-10
