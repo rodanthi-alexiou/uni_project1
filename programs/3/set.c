@@ -18,36 +18,32 @@ int* create_int(int value) {
 }
 
 int main(){
-FILE* fp;
+
 Set lines = set_create(compare_strings, NULL);
 char array[MAX][100];
 int i=0;
 char* value;
 
-fp = fopen("wish", "r");
-
-if(fp == NULL)
-    return -1;
 
 SetNode node;
 
-while (feof(fp) == 0){
 
-            if(fgets(array[i], MAX, fp) != NULL){
+
+            while(fgets(array[i], MAX, stdin) != NULL){
                 set_insert(lines,&array[i]);
 				node = set_find_node(lines,&array[i]);
 				
-				if(set_next(lines, node) == SET_BOF){
-					printf("<none>");
+				if(set_next(lines, node) == SET_EOF){
+					printf("<none>\n");
 				}
 				else{
 					value = set_node_value(lines,set_next(lines, node));
-					printf("%s", value);
+					printf("%s\n", value);
 				}
-}
+
 i++;
-printf("\n");
 }
+
 }
 
 
