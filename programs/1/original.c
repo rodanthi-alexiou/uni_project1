@@ -6,20 +6,14 @@
 
 int main(){
 
-FILE* fp;
 char array[LINES][MAX];
 
-fp = fopen("text.txt", "r");
-if(fp == NULL)
-    return -1;
 
 int i=0;
 int times;
 int k;
 
-while (feof(fp) == 0){
-
-if(fgets(array[i], MAX, fp) != NULL){
+while(fgets(array[i], MAX, stdin) != NULL){
     k=0;
     times=0;
     
@@ -32,11 +26,9 @@ if(fgets(array[i], MAX, fp) != NULL){
     k++;
     
     }
-        printf("%s %d \n", array[i], times);
+        printf("%d \n", times);
         i++;
 }
-}
 
-fclose(fp);
 
 }
