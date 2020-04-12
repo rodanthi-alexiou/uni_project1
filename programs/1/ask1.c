@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MAX 40
-#define LINES 1000
+#define MAX 20
+#define LINES 1000000
 
 int main(){
 
