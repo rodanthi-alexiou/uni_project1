@@ -31,7 +31,7 @@ SetNode node;
 
             while(fgets(array, MAX, stdin) != NULL){
 				char* saved = strdup(array);
-                set_insert(lines,saved);
+               			 set_insert(lines,saved); //βάζουμε τη γραμμή που διαβάσαμε στο set
 				node = set_find_node(lines,saved);
 				
 				if(set_next(lines, node) == SET_EOF){
