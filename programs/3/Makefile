@@ -16,7 +16,7 @@ OBJS = set.o $(LIB)/k08.a
 # Το εκτελέσιμο πρόγραμμα
 EXEC = set
 
-
+ARGS = < wish
 
 $(EXEC): $(OBJS)
 	$(CC) $(OBJS) -o $(EXEC) $(LDFLAGS)
@@ -29,5 +29,5 @@ clean:
 	rm -f $(OBJS) $(EXEC)
 
 run: $(EXEC)
-	./$(EXEC) 
+	./$(EXEC) $(ARGS)
 
