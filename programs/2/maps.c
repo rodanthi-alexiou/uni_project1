@@ -20,43 +20,29 @@ int* create_int(int value) {
 
 int main(){
 
-FILE* fp;
 char array[MAX][100];
 int i=0;
 
 Map lines = map_create(compare_strings, NULL, NULL);
 
-
-
-fp = fopen("text.txt", "r");
-
-if(fp == NULL)
-    return -1;
-
 int* times;
 
-
-
-while (feof(fp) == 0){
-
-            if(fgets(array[i], MAX, fp) != NULL){
+            while(fgets(array[i], MAX, stdin) != NULL){
 
 
                 if(map_find(lines,&array[i]) == NULL){
                     times = create_int(0);
                     map_insert(lines, &array[i], times);
-                    printf("%s and times: %d \n", array[i], *times );
+                    printf("%d \n", *times );
                 }
                 else{
                     times = map_find(lines, &array[i]);
                     (*times)+=1;
                     map_insert(lines, &array[i], times);
-                    printf("%s %d \n", array[i], *times);
+                    printf("%d \n", *times);
                 }
 
 
 i++;
 }
-}
-fclose(fp);
 }
